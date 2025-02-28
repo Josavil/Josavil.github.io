@@ -1,0 +1,192 @@
+:root {
+    --primary-font: "Didot", serif;
+    --secondary-font: "Helvetica Neue", Arial, sans-serif;
+    --text-color: #333;
+    --accent-color: #9c2662;
+    --background-light: #f9f9f9;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--secondary-font);
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #E0E0E0;
+}
+
+header {
+    background-image: url('mujeres.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px;
+    position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(48, 39, 39, 0.5);
+    z-index: 0;
+}
+
+header section {
+    position: relative;
+    z-index: 1;
+}
+.menu {
+    max-width: 1200px;
+    display: flex;
+    text-align: center;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+.card {
+    padding: 20px;
+    text-align: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px #c7c7c7;
+    margin-bottom: 35px;
+    width: 200px;
+    height: 200px;
+    background-image: white;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-1 {
+    color: white;
+    border: 2px solid #FF1493;
+    box-shadow: 0px 0px 20px #FF1493;
+}
+
+.card-2 {
+    color: white;
+    border: 2px solid #9400D3;
+    box-shadow: 0px 0px 20px #9400D3;
+}
+
+.card-3 {
+    color: white;
+    border: 2px solid #0000FF;
+    box-shadow: 0px 0px 20px #0000FF;
+}
+
+.card-4 {
+    color: white;
+    border: 2px solid #008000;
+    box-shadow: 0px 0px 20px #008000;
+}
+
+.card-5 {
+    color: white;
+    border: 2px solid #E1AC00;
+    box-shadow: 0px 0px 20px #E1AC00;
+}
+
+.card-6 {
+    color: white;
+    border: 2px solid #FF8C00;
+    box-shadow: 0px 0px 20px #FF8C00;
+}
+
+.card-7 {
+    color: white;
+    border: 2px solid #FF0000;
+    box-shadow: 0px 0px 20px #FF0000;
+}
+
+.card-8 {
+    color: white;
+    border: 2px solid #008B8B;
+    box-shadow: 0px 0px 20px #008B8B;
+}
+
+h1 {
+    font-family: 'Trevino';
+}
+
+h2 {
+    color:#9c2662;
+}
+
+section h2 {
+    font-family: var(--primary-font);
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+section {
+    max-width: 1200px;
+}
+
+@font-face {
+    font-family: 'Trevino';
+    src: url('Trevino.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+main {
+    max-width: 1200px;
+    padding: 0px 200px;
+    margin-top: 50px;
+}
+
+section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+section h2 {
+    font-family: var(--primary-font);
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .index {
+        padding: 1rem;
+    }
+}
