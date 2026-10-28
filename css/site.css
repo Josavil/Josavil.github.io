@@ -133,6 +133,13 @@ input:focus-visible {
   border-top: 1px solid var(--line);
 }
 
+.ai-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--footer-text);
+  font-size: 10px;
+}
+
 @media (max-width: 500px) {
   .site-shell { width: min(100% - 14px, 470px); margin: 7px auto; }
   .page-header { padding: 21px 18px; }

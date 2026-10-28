@@ -1,13 +1,25 @@
-# Portfolio de Josavil
+# Josavil — portfolio personal
 
-Portfolio personal estático para GitHub Pages, con estética inspirada en la web de principios de los 2010. Está construido con HTML y CSS, sin dependencias ni proceso de compilación.
+Portfolio personal de Jorge Sánchez Villanueva, publicado con GitHub Pages en [josavil.github.io](https://josavil.github.io/). Combina una presentación profesional con un pequeño espacio personal, inspirado en la web de principios de los 2010.
+
+## Qué encontrarás
+
+- **Inicio:** presentación, proyectos, experiencia, formación y enlaces.
+- **Juegos:** un Sudoku con tableros generados y pistas, y una prueba de reflejos que calcula clics por minuto.
+- **Taller de estilos:** paletas listas para usar y controles para probar colores personalizados. La elección se guarda localmente en el navegador.
+
+## Tecnologías
+
+HTML, CSS y JavaScript, sin frameworks ni dependencias de compilación. Se puede publicar directamente como sitio estático de GitHub Pages.
+
+- `index.html`, `games.html`, `sudoku.html` y `rpm.html` contienen las páginas.
+- `css/site.css` define el tema compartido; cada página tiene además su propia hoja de estilos.
+- `js/theme.js` gestiona las paletas, la personalización de colores y su persistencia local.
+
+## Uso de IA
+
+Este sitio se ha desarrollado en colaboración con IA generativa. Jorge aporta la idea, sus datos profesionales, las preferencias y las decisiones sobre el contenido; la IA ha ayudado a convertir esas indicaciones en diseño, código, juegos y ajustes. El resultado se revisa y modifica de forma iterativa.
 
 ## Personalización
 
-- Edita `index.html` para actualizar la presentación, la sección «Sobre mí» y los proyectos.
-- Cambia los enlaces de GitHub si tu nombre de usuario o repositorios son distintos.
-- Los estilos compartidos están en `css/site.css`; los estilos propios de cada página están en `css/home.css`, `css/games.css`, `css/sudoku.css` y `css/rpm.css`.
-- Las páginas enlazan primero la hoja compartida y después la hoja específica, para que las reglas propias puedan ajustar el tema común.
-- El botón «Diseña la página» ofrece paletas y colores personalizados; las preferencias se guardan en el almacenamiento local del navegador.
-
-El sitio publicado está disponible en [Josavil.github.io](https://josavil.github.io/).
+Edita las páginas HTML para cambiar el contenido y los enlaces. Para ajustar el diseño, modifica las variables CSS de `css/site.css` y los estilos específicos de cada página. Las paletas predefinidas y los controles del taller están en `js/theme.js` y en el panel presente en cada página.
