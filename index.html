@@ -1,22 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Inicio</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176a9b">
+  <meta name="description" content="El rincón de Josavil en internet: proyectos, cosas sobre mí y enlaces." />
+  <title>Josavil — mi rincón en internet</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #263648;
+      --muted: #647387;
+      --blue: #176a9b;
+      --blue-dark: #104c73;
+      --paper: #fffdf6;
+      --line: #c9d6df;
+      --orange: #e7833b;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background-color: #e8eff1;
+      background-image: radial-gradient(#c9d7dc 0.8px, transparent 0.8px);
+      background-size: 7px 7px;
+      font: 16px/1.65 Verdana, Geneva, sans-serif;
+    }
+
+    a { color: var(--blue); }
+    a:hover { color: var(--orange); }
+    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+    .site-shell {
+      width: min(100% - 32px, 1020px);
+      margin: 28px auto;
+      border: 1px solid #aebfc8;
+      background: var(--paper);
+      box-shadow: 0 5px 20px #334a5824;
+    }
+
+    .masthead {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 42px 30px;
+      color: white;
+      background: linear-gradient(135deg, #227eaa, #145277 74%, #103f5d);
+      border-bottom: 5px solid var(--orange);
+    }
+
+    .masthead::after {
+      position: absolute;
+      right: 28px;
+      bottom: -48px;
+      width: 180px;
+      height: 180px;
+      border: 18px solid #ffffff16;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .eyebrow {
+      margin: 0 0 5px;
+      color: #d7efff;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font: bold clamp(36px, 7vw, 58px)/1.1 Georgia, "Times New Roman", serif;
+      letter-spacing: -0.04em;
+      text-shadow: 2px 3px 0 #103f5d;
+    }
+
+    .masthead p:last-child {
+      max-width: 560px;
+      margin: 12px 0 0;
+      color: #edf8ff;
+      font-size: 16px;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 10px 24px;
+      background: linear-gradient(#fdfefe, #e8f0f3);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav a {
+      padding: 5px 11px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .main-nav a:hover {
+      background: white;
+      border-color: var(--line);
+      box-shadow: 0 1px 2px #26364812;
+    }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 26px;
+      padding: 28px;
+    }
+
+    main { min-width: 0; }
+
+    .intro {
+      margin-bottom: 26px;
+      padding: 20px 22px;
+      background: #f0f7fa;
+      border: 1px solid #cbdce5;
+      border-left: 5px solid var(--blue);
+    }
+
+    .intro p { margin: 0; }
+    .intro p + p { margin-top: 10px; }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 0 0 13px;
+      padding-bottom: 7px;
+      color: var(--blue-dark);
+      font: bold 25px/1.3 Georgia, "Times New Roman", serif;
+      border-bottom: 2px dotted #b8cbd5;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      font: bold 10px Verdana, Geneva, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project-card {
+      padding: 18px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 3px 3px 0 #dce5e8;
+    }
+
+    .project-card h3 {
+      margin: 0 0 5px;
+      font: bold 19px Georgia, "Times New Roman", serif;
+    }
+
+    .project-card p { margin: 0 0 12px; }
+
+    .project-link {
+      display: inline-block;
+      padding: 7px 11px;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      background: linear-gradient(#2785b1, #17628c);
+      border: 1px solid #124d70;
+      border-radius: 3px;
+      box-shadow: inset 0 1px #ffffff50;
+    }
+
+    .project-link:hover { color: white; background: linear-gradient(#e99555, #d86f2a); }
+
+    .section { margin-top: 30px; }
+
+    .about-copy { margin: 0; }
+
+    .sidebar-box {
+      margin-bottom: 17px;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .sidebar-box h2 {
+      margin: -15px -15px 12px;
+      padding: 8px 12px;
+      color: var(--blue-dark);
+      font: bold 15px Georgia, "Times New Roman", serif;
+      background: linear-gradient(#f5fafc, #e4eef2);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sidebar-box p { margin: 0; font-size: 13px; }
+    .sidebar-box p + p { margin-top: 9px; }
+
+    .link-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .link-list li + li { border-top: 1px dotted #d4dfe3; }
+
+    .link-list a {
+      display: block;
+      padding: 5px 0;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .link-list a::before { content: "» "; color: var(--orange); }
+
+    .status {
+      display: inline-block;
+      padding: 2px 7px;
+      color: #35622b;
+      font-size: 11px;
+      font-weight: bold;
+      background: #e8f5df;
+      border: 1px solid #c6dfb4;
+      border-radius: 2px;
+    }
+
+    footer {
+      padding: 13px 20px;
+      color: #596c79;
+      font-size: 11px;
+      text-align: center;
+      background: #eff4f5;
+      border-top: 1px solid var(--line);
+    }
+
+    footer p { margin: 0; }
+
+    @media (max-width: 700px) {
+      .site-shell { width: min(100% - 18px, 560px); margin: 9px auto; }
+      .masthead { padding: 27px 22px; }
+      .masthead::after { right: -65px; }
+      .main-nav { padding-inline: 12px; }
+      .page-layout { grid-template-columns: 1fr; gap: 10px; padding: 20px 16px; }
+      .sidebar { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+      .sidebar-box { margin: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 <body>
-    <iframe src="./elCorason/prensaRosa/voguExit.html"></iframe>
+  <div class="site-shell">
+    <header class="masthead">
+      <p class="eyebrow">Portfolio personal · desde algún lugar de internet</p>
+      <h1>Hola, soy Josavil.</h1>
+      <p>Este es mi pequeño rincón en la web: un lugar para compartir proyectos, ideas y un poco de lo que soy.</p>
+    </header>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#enlaces">Enlaces</a>
+    </nav>
+
+    <div class="page-layout" id="inicio">
+      <main>
+        <section class="intro" aria-label="Bienvenida">
+          <p><strong>¡Bienvenido/a!</strong> Me alegra que hayas pasado por aquí.</p>
+          <p>Estoy preparando este espacio para reunir las cosas que hago y los temas que me interesan. Mientras tanto, puedes echar un vistazo a mis repositorios.</p>
+        </section>
+
+        <section id="proyectos" aria-labelledby="projects-title">
+          <h2 class="section-heading" id="projects-title">Proyectos <span>cosas hechas con curiosidad</span></h2>
+          <article class="project-card">
+            <h3>Mi rincón en internet</h3>
+            <p>Este portfolio: una página personal sencilla, hecha para compartir mis proyectos y tener mi propio espacio en la web.</p>
+            <a class="project-link" href="https://github.com/Josavil/Josavil.github.io">Ver el código en GitHub</a>
+          </article>
+        </section>
+
+        <section class="section" id="sobre-mi" aria-labelledby="about-title">
+          <h2 class="section-heading" id="about-title">Un poco sobre mí</h2>
+          <p class="about-copy">Soy Josavil. Me gusta aprender, experimentar y convertir ideas en cosas que se puedan compartir. Este sitio irá creciendo conmigo; por ahora, es una pequeña puerta a lo que voy creando.</p>
+        </section>
+      </main>
+
+      <aside class="sidebar" aria-label="Información y enlaces">
+        <section class="sidebar-box">
+          <h2>Ahora mismo</h2>
+          <p><span class="status">En construcción</span></p>
+          <p>Este sitio está empezando. Volveré por aquí para añadir nuevos proyectos y detalles.</p>
+        </section>
+
+        <section class="sidebar-box" id="enlaces">
+          <h2>También estoy en</h2>
+          <ul class="link-list">
+            <li><a href="https://github.com/Josavil">Mi perfil de GitHub</a></li>
+            <li><a href="https://github.com/Josavil?tab=repositories">Todos mis repositorios</a></li>
+          </ul>
+        </section>
+
+        <section class="sidebar-box">
+          <h2>Un detalle</h2>
+          <p>Hecho con HTML y CSS, con cariño por la web de antes.</p>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      <p>© <span>Josavil</span> · Hecho en internet, para internet.</p>
+    </footer>
+  </div>
 </body>
 </html>
