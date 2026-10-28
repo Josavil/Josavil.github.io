@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/gallery.css">
   <script src="js/theme-tools.js" defer></script>
   <script src="js/theme.js" defer></script>
+  <script src="js/gallery.js" defer></script>
 </head>
 <body>
   <div class="site-shell home-shell">
@@ -73,7 +74,9 @@
         <section class="section" aria-labelledby="photos-preview-title">
           <h2 class="section-heading" id="photos-preview-title">Fotos <span>momentos fuera del código</span></h2>
           <div class="photo-preview">
-            <p>Un pequeño álbum personal está tomando forma.</p>
+            <div class="photo-preview-grid" id="gallery-preview" aria-label="Últimas fotos">
+              <p class="gallery-loading">Cargando fotos…</p>
+            </div>
             <a class="project-link" href="gallery.html">Visitar la galería</a>
           </div>
         </section>

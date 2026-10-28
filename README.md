@@ -18,4 +18,10 @@ HTML, CSS y JavaScript, sin frameworks ni dependencias de compilación. Se puede
 
 ## Añadir fotos a la galería
 
-Guarda versiones optimizadas de las fotos en `images/gallery/` y súbelas al repositorio. La página de galería detecta automáticamente los archivos JPG, PNG, WebP, GIF y AVIF de esa carpeta mediante la API de GitHub; no hace falta editar el HTML. Los nombres de archivo se usan como pie de foto y texto alternativo, así que conviene usar nombres descriptivos en lugar de nombres de cámara. La galería requiere conexión a internet y que el repositorio sea público para consultar la lista.
+Añade las fotos originales directamente a `images/gallery/` y ejecuta:
+
+```sh
+python3 scripts/build-gallery.py
+```
+
+El script genera WebP optimizados (máximo 1800 px), miniaturas (480 × 360 px) y actualiza `images/gallery/manifest.json`. La página y la vista previa de Inicio leen ese índice automáticamente; no hace falta editar el HTML ni anotar cada foto. Sube al repositorio las fotos nuevas y los archivos generados. Usa nombres descriptivos, porque el nombre se muestra como pie de foto y texto alternativo. Para previsualizar localmente, sirve el sitio con un servidor HTTP (por ejemplo, `python3 -m http.server`) en lugar de abrir la página como `file://`.
