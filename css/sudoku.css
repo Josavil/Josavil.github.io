@@ -1,0 +1,49 @@
+.instructions { margin-bottom: 20px; }
+
+.board-wrap { width: min(100%, 470px); margin: 0 auto; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  border: 3px solid var(--blue-dark);
+  background: var(--card-white);
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  color: var(--blue-dark);
+  font: 20px/1 Verdana, Geneva, sans-serif;
+  text-align: center;
+  border: 0;
+  border-right: 1px solid var(--grid-line);
+  border-bottom: 1px solid var(--grid-line);
+  border-radius: 0;
+  background: var(--card-white);
+}
+
+.cell:nth-child(3n) { border-right: 2px solid var(--grid-strong); }
+.cell:nth-child(9n) { border-right: 0; }
+.cell:nth-child(n + 19):nth-child(-n + 27),
+.cell:nth-child(n + 46):nth-child(-n + 54) { border-bottom: 2px solid var(--grid-strong); }
+.cell:nth-child(n + 73) { border-bottom: 0; }
+.cell.given { color: var(--ink); font-weight: bold; background: var(--soft-surface); }
+.cell.hint { color: var(--blue); background: var(--hint-surface); }
+.cell.error { color: var(--error-text); background: var(--error-surface); }
+.cell:disabled { opacity: 1; cursor: default; }
+
+.sudoku-controls { margin-top: 17px; }
+
+#message {
+  min-height: 1.6em;
+  margin: 13px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .cell { font-size: clamp(14px, 5vw, 19px); }
+}

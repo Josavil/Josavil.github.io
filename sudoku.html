@@ -6,182 +6,56 @@
   <meta name="theme-color" content="#176a9b">
   <meta name="description" content="Juega al Sudoku en el rincón de Jorge.">
   <title>Sudoku — el rincón de Jorge</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #263648;
-      --muted: #647387;
-      --blue: #176a9b;
-      --blue-dark: #104c73;
-      --paper: #fffdf6;
-      --line: #c9d6df;
-      --orange: #e7833b;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background-color: #e8eff1;
-      background-image: radial-gradient(#c9d7dc 0.8px, transparent 0.8px);
-      background-size: 7px 7px;
-      font: 16px/1.6 Verdana, Geneva, sans-serif;
-    }
-
-    a { color: var(--blue); }
-    a:hover { color: var(--orange); }
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 3px solid var(--orange);
-      outline-offset: 2px;
-    }
-
-    .site-shell {
-      width: min(100% - 24px, 760px);
-      margin: 28px auto;
-      background: var(--paper);
-      border: 1px solid #aebfc8;
-      box-shadow: 0 5px 20px #334a5824;
-    }
-
-    header {
-      padding: 25px 30px;
-      color: white;
-      background: linear-gradient(135deg, #227eaa, #145277 74%, #103f5d);
-      border-bottom: 5px solid var(--orange);
-    }
-
-    .back-link {
-      color: #e6f4fb;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    h1 {
-      margin: 10px 0 0;
-      font: bold clamp(32px, 7vw, 46px)/1.15 Georgia, "Times New Roman", serif;
-    }
-
-    header p { margin: 7px 0 0; color: #edf8ff; }
-
-    main { padding: 24px 30px 30px; }
-
-    .instructions {
-      margin: 0 0 20px;
-      padding: 12px 15px;
-      background: #f0f7fa;
-      border: 1px solid #cbdce5;
-      border-left: 5px solid var(--blue);
-    }
-
-    .board-wrap { width: min(100%, 470px); margin: 0 auto; }
-
-    .board {
-      display: grid;
-      grid-template-columns: repeat(9, minmax(0, 1fr));
-      border: 3px solid var(--blue-dark);
-      background: white;
-    }
-
-    .cell {
-      width: 100%;
-      aspect-ratio: 1;
-      min-width: 0;
-      padding: 0;
-      color: var(--blue-dark);
-      font: 20px/1 Verdana, Geneva, sans-serif;
-      text-align: center;
-      border: 0;
-      border-right: 1px solid #cbd8de;
-      border-bottom: 1px solid #cbd8de;
-      border-radius: 0;
-      background: white;
-    }
-
-    .cell:nth-child(3n) { border-right: 2px solid #657f8e; }
-    .cell:nth-child(9n) { border-right: 0; }
-    .cell:nth-child(n + 19):nth-child(-n + 27),
-    .cell:nth-child(n + 46):nth-child(-n + 54) { border-bottom: 2px solid #657f8e; }
-    .cell:nth-child(n + 73) { border-bottom: 0; }
-    .cell.given { color: #263648; font-weight: bold; background: #edf3f5; }
-    .cell.hint { color: #176a9b; background: #e8f5ff; }
-    .cell.error { color: #a12525; background: #fff0ed; }
-    .cell:disabled { opacity: 1; cursor: default; }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 17px;
-    }
-
-    button {
-      padding: 9px 13px;
-      color: white;
-      font: bold 13px Verdana, Geneva, sans-serif;
-      cursor: pointer;
-      background: linear-gradient(#2785b1, #17628c);
-      border: 1px solid #124d70;
-      border-radius: 3px;
-      box-shadow: inset 0 1px #ffffff50;
-    }
-
-    button.secondary {
-      color: var(--blue-dark);
-      background: linear-gradient(#fff, #e8f0f3);
-      border-color: #afc2cc;
-    }
-
-    #message {
-      min-height: 1.6em;
-      margin: 13px 0 0;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    footer {
-      padding: 12px 20px;
-      color: #596c79;
-      font-size: 11px;
-      text-align: center;
-      background: #eff4f5;
-      border-top: 1px solid var(--line);
-    }
-
-    @media (max-width: 500px) {
-      .site-shell { width: min(100% - 14px, 470px); margin: 7px auto; }
-      header { padding: 21px 18px; }
-      main { padding: 18px 12px 24px; }
-      .cell { font-size: clamp(14px, 5vw, 19px); }
-    }
-  </style>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/sudoku.css">
+  <script src="js/theme.js" defer></script>
 </head>
 <body>
   <div class="site-shell">
-    <header>
+    <header class="page-header">
       <a class="back-link" href="games.html">« Volver a los juegos</a>
       <h1>Sudoku</h1>
       <p>Un clásico para tomarse un descanso. ¡A por ello!</p>
     </header>
 
-    <main>
+    <main class="page-main">
       <p class="instructions"><strong>Cómo jugar:</strong> completa la cuadrícula para que cada fila, columna y bloque de 3 × 3 contenga los números del 1 al 9. Escribe un número en una casilla vacía; usa las flechas del teclado para moverte.</p>
       <div class="board-wrap">
         <div class="board" id="board" role="group" aria-label="Tablero de Sudoku"></div>
-        <div class="controls">
-          <button type="button" class="secondary" id="new-game">Nueva partida</button>
-          <button type="button" class="secondary" id="hint">Dame una pista</button>
-          <button type="button" id="check">Comprobar</button>
-          <button type="button" class="secondary" id="clear">Borrar mis respuestas</button>
+        <div class="controls sudoku-controls">
+          <button type="button" class="button secondary" id="new-game">Nueva partida</button>
+          <button type="button" class="button secondary" id="hint">Dame una pista</button>
+          <button type="button" class="button" id="check">Comprobar</button>
+          <button type="button" class="button secondary" id="clear">Borrar mis respuestas</button>
         </div>
         <p id="message" role="status" aria-live="polite"></p>
       </div>
     </main>
 
-    <footer>Un juego más en mi pequeño rincón de internet.</footer>
+    <footer class="site-footer">Un juego más en mi pequeño rincón de internet.</footer>
   </div>
+  <details class="theme-tools">
+    <summary>Diseña la página</summary>
+    <div class="theme-panel" id="theme-panel">
+      <h2>Taller de estilos</h2>
+      <p>Elige una paleta o crea la tuya. Tu selección se guarda en este navegador. Comprueba que el texto siga siendo legible con tus colores.</p>
+      <label for="theme-preset">Paleta</label>
+      <select id="theme-preset">
+        <option value="classic">Clásica (original)</option><option value="ocean">Océano</option><option value="forest">Bosque</option><option value="sunset">Atardecer</option><option value="night">Noche</option><option value="custom">Personalizada</option>
+      </select>
+      <div class="theme-color-controls" id="theme-colors" hidden>
+        <label for="color-background">Fondo de página<input id="color-background" type="color" data-color="page-bg"></label>
+        <label for="color-surface">Paneles<input id="color-surface" type="color" data-color="paper"></label>
+        <label for="color-text">Texto<input id="color-text" type="color" data-color="ink"></label>
+        <label for="color-primary">Color principal<input id="color-primary" type="color" data-color="blue"></label>
+        <label for="color-deep">Color principal oscuro<input id="color-deep" type="color" data-color="blue-dark"></label>
+        <label for="color-highlight">Acento<input id="color-highlight" type="color" data-color="orange"></label>
+        <label for="color-border">Bordes<input id="color-border" type="color" data-color="line"></label>
+      </div>
+      <button class="button secondary" id="theme-reset" type="button">Restaurar estilo original</button>
+      <p id="theme-status" role="status" aria-live="polite"></p>
+    </div>
+  </details>
 
   <script>
     const board = document.querySelector("#board");

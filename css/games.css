@@ -1,0 +1,30 @@
+.game-list { display: grid; gap: 16px; }
+
+.game-card {
+  padding: 19px;
+  background: var(--card-white);
+  border: 1px solid var(--line);
+  box-shadow: 3px 3px 0 var(--card-shadow);
+}
+
+.game-card h2 {
+  margin: 0 0 7px;
+  color: var(--blue-dark);
+  font: bold 22px Georgia, "Times New Roman", serif;
+}
+
+.game-card p { margin: 0 0 14px; }
+
+.play-link {
+  display: inline-block;
+  padding: 8px 12px;
+  color: var(--header-text);
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  background: linear-gradient(var(--action-start), var(--action-end));
+  border: 1px solid var(--blue-dark);
+  border-radius: 3px;
+}
+
+.play-link:hover { color: white; background: linear-gradient(var(--action-hover-start), var(--action-hover-end)); }

@@ -6,184 +6,19 @@
   <meta name="theme-color" content="#176a9b">
   <meta name="description" content="Prueba de reflejos: mide tus clics por minuto en este minijuego.">
   <title>Prueba de clics — el rincón de Jorge</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #263648;
-      --muted: #647387;
-      --blue: #176a9b;
-      --blue-dark: #104c73;
-      --paper: #fffdf6;
-      --line: #c9d6df;
-      --orange: #e7833b;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background-color: #e8eff1;
-      background-image: radial-gradient(#c9d7dc 0.8px, transparent 0.8px);
-      background-size: 7px 7px;
-      font: 16px/1.6 Verdana, Geneva, sans-serif;
-    }
-
-    a { color: var(--blue); }
-    a:hover { color: var(--orange); }
-    a:focus-visible, button:focus-visible {
-      outline: 3px solid var(--orange);
-      outline-offset: 3px;
-    }
-
-    .site-shell {
-      width: min(100% - 24px, 760px);
-      margin: 28px auto;
-      background: var(--paper);
-      border: 1px solid #aebfc8;
-      box-shadow: 0 5px 20px #334a5824;
-    }
-
-    header {
-      padding: 25px 30px;
-      color: white;
-      background: linear-gradient(135deg, #227eaa, #145277 74%, #103f5d);
-      border-bottom: 5px solid var(--orange);
-    }
-
-    .back-link { color: #e6f4fb; font-size: 13px; font-weight: bold; }
-
-    h1 {
-      margin: 10px 0 0;
-      font: bold clamp(32px, 7vw, 46px)/1.15 Georgia, "Times New Roman", serif;
-    }
-
-    header p { margin: 7px 0 0; color: #edf8ff; }
-    main { padding: 24px 30px 30px; }
-
-    .instructions {
-      margin: 0 0 16px;
-      padding: 12px 15px;
-      background: #f0f7fa;
-      border: 1px solid #cbdce5;
-      border-left: 5px solid var(--blue);
-    }
-
-    .scoreboard {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 0 0 13px;
-      text-align: center;
-    }
-
-    .scoreboard p { margin: 0; color: var(--muted); font-size: 12px; }
-    .scoreboard strong { display: block; color: var(--blue-dark); font-size: 22px; }
-
-    .playfield {
-      position: relative;
-      min-height: 330px;
-      overflow: hidden;
-      background-color: #f8fbfc;
-      background-image: linear-gradient(#dce7eb 1px, transparent 1px), linear-gradient(90deg, #dce7eb 1px, transparent 1px);
-      background-size: 24px 24px;
-      border: 2px solid #9db4bf;
-      border-radius: 3px;
-    }
-
-    .target {
-      position: absolute;
-      width: 42px;
-      height: 42px;
-      padding: 0;
-      transform: translate(-50%, -50%);
-      border: 3px solid white;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 2px 6px #26364855, inset 0 0 0 2px #c85c1c;
-      cursor: crosshair;
-      touch-action: manipulation;
-    }
-
-    .target:hover { background: #f29a55; }
-    .target[hidden] { display: none; }
-
-    .field-message {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-content: center;
-      gap: 10px;
-      padding: 20px;
-      text-align: center;
-      background: #f8fbfce8;
-    }
-
-    .field-message[hidden] { display: none; }
-    .field-message p { margin: 0; }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    button.control {
-      padding: 9px 13px;
-      color: white;
-      font: bold 13px Verdana, Geneva, sans-serif;
-      cursor: pointer;
-      background: linear-gradient(#2785b1, #17628c);
-      border: 1px solid #124d70;
-      border-radius: 3px;
-      box-shadow: inset 0 1px #ffffff50;
-    }
-
-    button.control.secondary {
-      color: var(--blue-dark);
-      background: linear-gradient(#fff, #e8f0f3);
-      border-color: #afc2cc;
-    }
-
-    #start { min-width: 150px; }
-
-    #result {
-      min-height: 1.6em;
-      margin: 12px 0 0;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    footer {
-      padding: 12px 20px;
-      color: #596c79;
-      font-size: 11px;
-      text-align: center;
-      background: #eff4f5;
-      border-top: 1px solid var(--line);
-    }
-
-    @media (max-width: 500px) {
-      .site-shell { width: min(100% - 14px, 470px); margin: 7px auto; }
-      header { padding: 21px 18px; }
-      main { padding: 18px 12px 24px; }
-      .playfield { min-height: 270px; }
-      .scoreboard { gap: 18px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/rpm.css">
+  <script src="js/theme.js" defer></script>
 </head>
 <body>
   <div class="site-shell">
-    <header>
+    <header class="page-header">
       <a class="back-link" href="games.html">« Volver a los juegos</a>
       <h1>Prueba de clics</h1>
       <p>¿Cuántos puntos puedes acertar en 15 segundos?</p>
     </header>
 
-    <main>
+    <main class="page-main">
       <p class="instructions"><strong>Cómo jugar:</strong> pulsa «Empezar» y haz clic o toca el punto naranja cada vez que aparezca en un lugar nuevo. Al final verás tu ritmo en clics por minuto (RPM). Es una prueba corta de reflejos, no una medición oficial.</p>
 
       <div class="scoreboard" aria-label="Marcador">
@@ -192,6 +27,11 @@
         <p>Ritmo<strong id="rate">— RPM</strong></p>
       </div>
 
+      <details class="rating-guide">
+        <summary>¿Qué se considera un buen resultado?</summary>
+        <p>Es una escala orientativa de este minijuego, no una clasificación oficial: menos de 20 RPM, calentando; 20–39, buen ritmo; 40–59, reflejos rápidos; 60 o más, ¡velocidad de rayo!</p>
+      </details>
+
       <div class="playfield" id="playfield" aria-label="Zona de juego">
         <button class="target" id="target" type="button" aria-label="Acertar el punto" hidden></button>
         <div class="field-message" id="field-message">
@@ -199,15 +39,40 @@
         </div>
       </div>
 
-      <div class="controls">
-        <button class="control" id="start" type="button">Empezar</button>
-        <button class="control secondary" id="again" type="button" hidden>Jugar otra vez</button>
+      <div class="controls rpm-controls">
+        <button class="button" id="start" type="button">Empezar</button>
+        <button class="button secondary" id="again" type="button" hidden>Jugar otra vez</button>
       </div>
-      <p id="result" role="status" aria-live="polite"></p>
+      <div id="round-summary" role="status" aria-live="polite">
+        <p id="result"></p>
+        <p id="rating"></p>
+      </div>
     </main>
 
-    <footer>¿Tienes buen pulso? ¡A ver cuántos aciertas!</footer>
+    <footer class="site-footer">¿Tienes buen pulso? ¡A ver cuántos aciertas!</footer>
   </div>
+  <details class="theme-tools">
+    <summary>Diseña la página</summary>
+    <div class="theme-panel" id="theme-panel">
+      <h2>Taller de estilos</h2>
+      <p>Elige una paleta o crea la tuya. Tu selección se guarda en este navegador. Comprueba que el texto siga siendo legible con tus colores.</p>
+      <label for="theme-preset">Paleta</label>
+      <select id="theme-preset">
+        <option value="classic">Clásica (original)</option><option value="ocean">Océano</option><option value="forest">Bosque</option><option value="sunset">Atardecer</option><option value="night">Noche</option><option value="custom">Personalizada</option>
+      </select>
+      <div class="theme-color-controls" id="theme-colors" hidden>
+        <label for="color-background">Fondo de página<input id="color-background" type="color" data-color="page-bg"></label>
+        <label for="color-surface">Paneles<input id="color-surface" type="color" data-color="paper"></label>
+        <label for="color-text">Texto<input id="color-text" type="color" data-color="ink"></label>
+        <label for="color-primary">Color principal<input id="color-primary" type="color" data-color="blue"></label>
+        <label for="color-deep">Color principal oscuro<input id="color-deep" type="color" data-color="blue-dark"></label>
+        <label for="color-highlight">Acento<input id="color-highlight" type="color" data-color="orange"></label>
+        <label for="color-border">Bordes<input id="color-border" type="color" data-color="line"></label>
+      </div>
+      <button class="button secondary" id="theme-reset" type="button">Restaurar estilo original</button>
+      <p id="theme-status" role="status" aria-live="polite"></p>
+    </div>
+  </details>
 
   <script>
     const roundDuration = 15;
@@ -218,6 +83,7 @@
     const hitsDisplay = document.querySelector("#hits");
     const rateDisplay = document.querySelector("#rate");
     const result = document.querySelector("#result");
+    const rating = document.querySelector("#rating");
     const startButton = document.querySelector("#start");
     const againButton = document.querySelector("#again");
     let hits = 0;
@@ -225,6 +91,19 @@
     let endAt = 0;
     let timerId = null;
     let previousPosition = null;
+
+    function ratePerformance(clicksPerMinute) {
+      if (clicksPerMinute < 20) {
+        return "Calentando motores: ¡todo gran récord empieza con un clic!";
+      }
+      if (clicksPerMinute < 40) {
+        return "Buen ritmo: ¡ya tienes el clic en la punta de los dedos!";
+      }
+      if (clicksPerMinute < 60) {
+        return "Reflejos rápidos: ¡ese punto no tuvo escapatoria!";
+      }
+      return "¡Velocidad de rayo! Tu ratón va a pedirte un descanso.";
+    }
 
     function moveTarget() {
       const padding = 28;
@@ -260,6 +139,7 @@
       const clicksPerMinute = Math.round((hits / elapsedSeconds) * 60);
       rateDisplay.textContent = `${clicksPerMinute} RPM`;
       result.textContent = `¡Has acertado ${hits} ${hits === 1 ? "punto" : "puntos"}! Tu ritmo fue de ${clicksPerMinute} clics por minuto (RPM).`;
+      rating.textContent = ratePerformance(clicksPerMinute);
       againButton.focus();
     }
 
@@ -276,6 +156,7 @@
       hitsDisplay.textContent = "0";
       rateDisplay.textContent = "— RPM";
       result.textContent = "";
+      rating.textContent = "";
       startButton.hidden = true;
       againButton.hidden = true;
       fieldMessage.hidden = true;
