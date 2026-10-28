@@ -86,7 +86,7 @@ Duplicate the Project template for each additional project.
 - **Retro style:** ☐ subtle ☐ strong ☒ decide together
 - **Colors, sites, or design references you like:** Not provided.
 - **Things you definitely want on the page:** A personal portfolio with an early-2010s web feel; project links and information about you.
-- **Games page:** Yes. Add a Games page for small playable games; start with Sudoku only.
+- **Games page:** Yes. Add a menu to choose among small playable games. Sudoku and a click-speed test (clicks per minute, RPM) are implemented.
 - **Things you definitely do not want:** Not provided.
 - **Should the design include a photo/avatar?** Not decided.
 
@@ -105,14 +105,14 @@ These are suggestions, not commitments. A small, finished site is better than ma
 
 ### Games
 
-Sudoku is already implemented. Good next choices for a lightweight, self-contained Games page:
+Sudoku and a click-speed test (RPM) are implemented and listed on the Games menu. Good next choices for a lightweight, self-contained Games page:
 
 1. **Memory pairs** — easy to learn, works well on phones, and allows a personal visual theme.
 2. **2048-style number puzzle** — quick to play and a good fit for keyboard and touch controls.
 3. **Minesweeper** — a recognizable classic with a little more interaction and game logic.
 4. **Word guessing game** — fun daily-puzzle feel; use your own word list and avoid copying another game's branding.
 
-**Suggested order:** finish and polish Sudoku first, then add Memory pairs if you want another game. Add only the games you enjoy maintaining.
+**Suggested order:** add Memory pairs if you want another game. Add only the games you enjoy maintaining.
 
 ### Photography
 
@@ -138,7 +138,7 @@ Before publishing, choose images you have permission to share and check that the
 
 - **Known:** the site is intended to be a personal portfolio with an early-2010s web feel, a job-seeking portfolio and personal presentation card, and a Games section.
 - **Added from your résumé:** your name, junior backend profile, skills, work and volunteer experience, education, language/certifications, and two project summaries.
-- **Confirmed by you:** use masculine forms/he-him; the site should be both a job-seeking portfolio and a personal presentation card; add a Games page, beginning with Sudoku; considering a photography page.
-- **Implemented:** updated the homepage with your supplied profile and experience, and added a playable Sudoku page with a different generated puzzle, a guaranteed unique solution, hints, and a new-game button.
+- **Confirmed by you:** use masculine forms/he-him; the site should be both a job-seeking portfolio and a personal presentation card; have a Games menu and a click-speed game; considering a photography page.
+- **Implemented:** updated the homepage with your supplied profile and experience; added a Games menu, a playable Sudoku page with generated unique puzzles and hints, and a 15-second click-speed game that reports clicks per minute (RPM).
 - **Still to confirm:** specific job target; preferred project contributions, technologies, and links; LinkedIn URL; whether to publish contact details or a CV; language and visual preferences.
 - **Next step:** choose which photo-gallery idea appeals to you and share what you like photographing. For the portfolio, share the EntabApp technologies and your personal contribution, plus project repository links if available.
