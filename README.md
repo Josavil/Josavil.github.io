@@ -12,19 +12,10 @@ Portfolio personal de Jorge Sánchez Villanueva, publicado con GitHub Pages en [
 ## Tecnologías
 
 HTML, CSS y JavaScript, sin frameworks ni dependencias de compilación. Se puede publicar directamente como sitio estático de GitHub Pages.
-- `index.html`, `games.html`, `sudoku.html` y `rpm.html` contienen las páginas.
+- `index.html`, `games.html`, `sudoku.html`, `rpm.html` y `gallery.html` contienen las páginas.
 - `css/site.css` define el tema compartido; cada página tiene además su propia hoja de estilos.
-- `js/theme.js` gestiona las paletas, la personalización de colores y su persistencia local.
+- `js/theme-tools.js` inserta el panel compartido del taller; `js/theme.js` gestiona las paletas, la personalización de colores y su persistencia local.
 
 ## Añadir fotos a la galería
 
-Guarda versiones optimizadas de las fotos en `images/gallery/` y añade una tarjeta por foto dentro de la sección principal de `gallery.html`:
-
-```html
-<figure class="photo-card">
-  <img src="images/gallery/mi-foto.webp" alt="Descripción de lo que aparece en la foto">
-  <figcaption>Un pie de foto opcional</figcaption>
-</figure>
-```
-
-Al añadir la primera foto, sustituye el bloque `gallery-empty` por un contenedor con clase `photo-grid` que incluya las tarjetas. Usa imágenes WebP o JPEG optimizadas y escribe un texto alternativo descriptivo para cada una.
+Guarda versiones optimizadas de las fotos en `images/gallery/` y súbelas al repositorio. La página de galería detecta automáticamente los archivos JPG, PNG, WebP, GIF y AVIF de esa carpeta mediante la API de GitHub; no hace falta editar el HTML. Los nombres de archivo se usan como pie de foto y texto alternativo, así que conviene usar nombres descriptivos en lugar de nombres de cámara. La galería requiere conexión a internet y que el repositorio sea público para consultar la lista.
