@@ -139,6 +139,6 @@ Before publishing, choose images you have permission to share and check that the
 - **Known:** the site is intended to be a personal portfolio with an early-2010s web feel, a job-seeking portfolio and personal presentation card, and a Games section.
 - **Added from your résumé:** your name, junior backend profile, skills, work and volunteer experience, education, language/certifications, and two project summaries.
 - **Confirmed by you:** use masculine forms/he-him; the site should be both a job-seeking portfolio and a personal presentation card; add a Games page, beginning with Sudoku; considering a photography page.
-- **Implemented:** updated the homepage with your supplied profile and experience, and added a playable Sudoku page.
+- **Implemented:** updated the homepage with your supplied profile and experience, and added a playable Sudoku page with a different generated puzzle, a guaranteed unique solution, hints, and a new-game button.
 - **Still to confirm:** specific job target; preferred project contributions, technologies, and links; LinkedIn URL; whether to publish contact details or a CV; language and visual preferences.
 - **Next step:** choose which photo-gallery idea appeals to you and share what you like photographing. For the portfolio, share the EntabApp technologies and your personal contribution, plus project repository links if available.

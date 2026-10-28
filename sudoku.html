@@ -104,6 +104,7 @@
     .cell:nth-child(n + 46):nth-child(-n + 54) { border-bottom: 2px solid #657f8e; }
     .cell:nth-child(n + 73) { border-bottom: 0; }
     .cell.given { color: #263648; font-weight: bold; background: #edf3f5; }
+    .cell.hint { color: #176a9b; background: #e8f5ff; }
     .cell.error { color: #a12525; background: #fff0ed; }
     .cell:disabled { opacity: 1; cursor: default; }
 
@@ -170,6 +171,8 @@
       <div class="board-wrap">
         <div class="board" id="board" role="group" aria-label="Tablero de Sudoku"></div>
         <div class="controls">
+          <button type="button" class="secondary" id="new-game">Nueva partida</button>
+          <button type="button" class="secondary" id="hint">Dame una pista</button>
           <button type="button" id="check">Comprobar</button>
           <button type="button" class="secondary" id="clear">Borrar mis respuestas</button>
         </div>
@@ -181,80 +184,156 @@
   </div>
 
   <script>
-    const puzzle = [
-      "530070000",
-      "600195000",
-      "098000060",
-      "800060003",
-      "400803001",
-      "700020006",
-      "060000280",
-      "000419005",
-      "000080079"
-    ];
-
-    const solution = [
-      "534678912",
-      "672195348",
-      "198342567",
-      "859761423",
-      "426853791",
-      "713924856",
-      "961537284",
-      "287419635",
-      "345286179"
-    ];
-
     const board = document.querySelector("#board");
     const message = document.querySelector("#message");
     const cells = [];
+    let puzzle = [];
+    let solution = [];
+
+    function shuffle(values) {
+      for (let index = values.length - 1; index > 0; index -= 1) {
+        const otherIndex = Math.floor(Math.random() * (index + 1));
+        [values[index], values[otherIndex]] = [values[otherIndex], values[index]];
+      }
+      return values;
+    }
+
+    function shuffledSudokuSolution() {
+      const bands = shuffle([0, 1, 2]);
+      const rows = bands.flatMap((band) => shuffle([0, 1, 2]).map((row) => band * 3 + row));
+      const stacks = shuffle([0, 1, 2]);
+      const columns = stacks.flatMap((stack) => shuffle([0, 1, 2]).map((column) => stack * 3 + column));
+      const digits = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+      const transpose = Math.random() < 0.5;
+
+      return Array.from({ length: 9 }, (_, row) =>
+        Array.from({ length: 9 }, (_, column) => {
+          const sourceRow = transpose ? columns[column] : rows[row];
+          const sourceColumn = transpose ? rows[row] : columns[column];
+          const pattern = (sourceRow * 3 + Math.floor(sourceRow / 3) + sourceColumn) % 9;
+          return digits[pattern];
+        })
+      );
+    }
+
+    function candidateDigits(grid, index) {
+      const row = Math.floor(index / 9);
+      const column = index % 9;
+      const used = new Set();
+
+      for (let position = 0; position < 9; position += 1) {
+        used.add(grid[row * 9 + position]);
+        used.add(grid[position * 9 + column]);
+      }
+
+      const boxRow = Math.floor(row / 3) * 3;
+      const boxColumn = Math.floor(column / 3) * 3;
+      for (let boxR = 0; boxR < 3; boxR += 1) {
+        for (let boxC = 0; boxC < 3; boxC += 1) {
+          used.add(grid[(boxRow + boxR) * 9 + boxColumn + boxC]);
+        }
+      }
+
+      return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((digit) => !used.has(digit));
+    }
+
+    function countSolutions(grid, limit = 2) {
+      let bestIndex = -1;
+      let bestCandidates = null;
+
+      for (let index = 0; index < grid.length; index += 1) {
+        if (grid[index] !== 0) continue;
+        const candidates = candidateDigits(grid, index);
+        if (candidates.length === 0) return 0;
+        if (bestCandidates === null || candidates.length < bestCandidates.length) {
+          bestIndex = index;
+          bestCandidates = candidates;
+          if (candidates.length === 1) break;
+        }
+      }
+
+      if (bestIndex === -1) return 1;
+
+      let solutionsFound = 0;
+      for (const digit of bestCandidates) {
+        grid[bestIndex] = digit;
+        solutionsFound += countSolutions(grid, limit - solutionsFound);
+        grid[bestIndex] = 0;
+        if (solutionsFound >= limit) return solutionsFound;
+      }
+
+      return solutionsFound;
+    }
+
+    function generatePuzzle() {
+      solution = shuffledSudokuSolution();
+      puzzle = solution.flat();
+      const removalOrder = shuffle(Array.from({ length: 81 }, (_, index) => index));
+      let clues = 81;
+
+      for (const index of removalOrder) {
+        if (clues <= 36) break;
+        const previousValue = puzzle[index];
+        puzzle[index] = 0;
+        if (countSolutions([...puzzle]) === 1) clues -= 1;
+        else puzzle[index] = previousValue;
+      }
+    }
 
     function setMessage(text) {
       message.textContent = text;
     }
 
     function createBoard() {
-      puzzle.forEach((row, rowIndex) => {
-        [...row].forEach((value, columnIndex) => {
-          const input = document.createElement("input");
-          const given = value !== "0";
-          input.className = given ? "cell given" : "cell";
-          input.type = "text";
-          input.inputMode = "numeric";
-          input.maxLength = 1;
-          input.autocomplete = "off";
-          input.spellcheck = false;
-          input.value = given ? value : "";
-          input.disabled = given;
-          input.setAttribute("aria-label", `Fila ${rowIndex + 1}, columna ${columnIndex + 1}${given ? ", pista" : ""}`);
-          input.dataset.row = rowIndex;
-          input.dataset.column = columnIndex;
+      puzzle.forEach((value, index) => {
+        const rowIndex = Math.floor(index / 9);
+        const columnIndex = index % 9;
+        const given = value !== 0;
+        const input = document.createElement("input");
+        input.className = given ? "cell given" : "cell";
+        input.type = "text";
+        input.inputMode = "numeric";
+        input.maxLength = 1;
+        input.autocomplete = "off";
+        input.spellcheck = false;
+        input.value = given ? String(value) : "";
+        input.disabled = given;
+        input.setAttribute("aria-label", `Fila ${rowIndex + 1}, columna ${columnIndex + 1}${given ? ", pista" : ""}`);
+        input.dataset.row = rowIndex;
+        input.dataset.column = columnIndex;
 
-          input.addEventListener("input", () => {
-            const digit = input.value.match(/[1-9]/);
-            input.value = digit ? digit[0] : "";
-            input.classList.remove("error");
-            input.removeAttribute("aria-invalid");
-            setMessage("");
-          });
-
-          input.addEventListener("keydown", (event) => {
-            const moves = {
-              ArrowUp: [-1, 0],
-              ArrowDown: [1, 0],
-              ArrowLeft: [0, -1],
-              ArrowRight: [0, 1]
-            };
-            const move = moves[event.key];
-            if (!move) return;
-            event.preventDefault();
-            focusNextCell(rowIndex + move[0], columnIndex + move[1], move);
-          });
-
-          cells.push(input);
-          board.append(input);
+        input.addEventListener("input", () => {
+          const digit = input.value.match(/[1-9]/);
+          input.value = digit ? digit[0] : "";
+          input.classList.remove("error");
+          input.removeAttribute("aria-invalid");
+          setMessage("");
         });
+
+        input.addEventListener("keydown", (event) => {
+          const moves = {
+            ArrowUp: [-1, 0],
+            ArrowDown: [1, 0],
+            ArrowLeft: [0, -1],
+            ArrowRight: [0, 1]
+          };
+          const move = moves[event.key];
+          if (!move) return;
+          event.preventDefault();
+          focusNextCell(rowIndex + move[0], columnIndex + move[1], move);
+        });
+
+        cells.push(input);
+        board.append(input);
       });
+    }
+
+    function startNewGame() {
+      generatePuzzle();
+      cells.length = 0;
+      board.replaceChildren();
+      createBoard();
+      setMessage("Nueva partida lista. ¡Suerte!");
     }
 
     function focusNextCell(row, column, direction) {
@@ -279,7 +358,7 @@
         const row = Number(cell.dataset.row);
         const column = Number(cell.dataset.column);
         const value = cell.value;
-        const isIncorrect = value !== "" && value !== solution[row][column];
+        const isIncorrect = value !== "" && Number(value) !== solution[row][column];
         if (value === "") empty = true;
         if (isIncorrect) incorrect = true;
         cell.classList.toggle("error", isIncorrect);
@@ -303,7 +382,28 @@
       setMessage("Tablero listo para empezar de nuevo.");
     }
 
-    createBoard();
+    function giveHint() {
+      const blanks = cells.filter((cell) => !cell.disabled && cell.value === "");
+      if (blanks.length === 0) {
+        setMessage("No quedan casillas vacías para dar una pista.");
+        return;
+      }
+
+      const cell = blanks[Math.floor(Math.random() * blanks.length)];
+      const row = Number(cell.dataset.row);
+      const column = Number(cell.dataset.column);
+      cell.value = String(solution[row][column]);
+      cell.disabled = true;
+      cell.classList.add("given", "hint");
+      cell.setAttribute("aria-label", `Fila ${row + 1}, columna ${column + 1}, pista revelada`);
+      cell.classList.remove("error");
+      cell.removeAttribute("aria-invalid");
+      setMessage("Pista: he rellenado una casilla por ti.");
+    }
+
+    startNewGame();
+    document.querySelector("#new-game").addEventListener("click", startNewGame);
+    document.querySelector("#hint").addEventListener("click", giveHint);
     document.querySelector("#check").addEventListener("click", checkBoard);
     document.querySelector("#clear").addEventListener("click", clearAnswers);
   </script>
