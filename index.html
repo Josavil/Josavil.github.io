@@ -148,6 +148,11 @@
       text-transform: uppercase;
     }
 
+    .project-list {
+      display: grid;
+      gap: 14px;
+    }
+
     .project-card {
       padding: 18px;
       background: white;
@@ -161,6 +166,24 @@
     }
 
     .project-card p { margin: 0 0 12px; }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0 0 13px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 2px 7px;
+      color: #435b69;
+      font-size: 11px;
+      background: #edf4f6;
+      border: 1px solid #d5e1e5;
+      border-radius: 2px;
+    }
 
     .project-link {
       display: inline-block;
@@ -180,6 +203,7 @@
     .section { margin-top: 30px; }
 
     .about-copy { margin: 0; }
+    .experience-entry + .experience-entry { margin-top: 14px; }
 
     .sidebar-box {
       margin-bottom: 17px;
@@ -258,37 +282,70 @@
 <body>
   <div class="site-shell">
     <header class="masthead">
-      <p class="eyebrow">Portfolio personal · desde algún lugar de internet</p>
-      <h1>Hola, soy Josavil.</h1>
-      <p>Este es mi pequeño rincón en la web: un lugar para compartir proyectos, ideas y un poco de lo que soy.</p>
+      <p class="eyebrow">Portfolio personal · Zaragoza, España</p>
+      <h1>Hola, soy Jorge.</h1>
+      <p>Desarrollador de software con interés en backend, aplicaciones útiles y todo lo que merece un pequeño rincón en internet.</p>
     </header>
 
     <nav class="main-nav" aria-label="Navegación principal">
       <a href="#inicio">Inicio</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#sobre-mi">Sobre mí</a>
+      <a href="sudoku.html">Juegos</a>
       <a href="#enlaces">Enlaces</a>
     </nav>
 
     <div class="page-layout" id="inicio">
       <main>
         <section class="intro" aria-label="Bienvenida">
-          <p><strong>¡Bienvenido/a!</strong> Me alegra que hayas pasado por aquí.</p>
-          <p>Estoy preparando este espacio para reunir las cosas que hago y los temas que me interesan. Mientras tanto, puedes echar un vistazo a mis repositorios.</p>
+          <p><strong>¡Bienvenido!</strong> Este sitio es mi tarjeta de presentación y también mi pequeño rincón personal.</p>
+          <p>Soy desarrollador backend junior, centrado en Java, Spring e SQL. Aquí encontrarás proyectos, un poco de mi recorrido y algún sitio para pasar el rato.</p>
         </section>
 
         <section id="proyectos" aria-labelledby="projects-title">
           <h2 class="section-heading" id="projects-title">Proyectos <span>cosas hechas con curiosidad</span></h2>
-          <article class="project-card">
-            <h3>Mi rincón en internet</h3>
-            <p>Este portfolio: una página personal sencilla, hecha para compartir mis proyectos y tener mi propio espacio en la web.</p>
-            <a class="project-link" href="https://github.com/Josavil/Josavil.github.io">Ver el código en GitHub</a>
-          </article>
+          <div class="project-list">
+            <article class="project-card">
+              <h3>EntabApp</h3>
+              <p>Aplicación para ayudar a un grupo Scout a coordinar tareas y actividades, con calendario, inventario, control de facturas y una pizarra colaborativa.</p>
+              <a class="project-link" href="https://github.com/Josavil?tab=repositories">Buscar el proyecto en GitHub</a>
+            </article>
+            <article class="project-card">
+              <h3>downloadsOrganizer</h3>
+              <p>Script en Python que organiza la carpeta de descargas según el tipo de archivo.</p>
+              <ul class="tag-list" aria-label="Tecnologías">
+                <li>Python</li>
+              </ul>
+              <a class="project-link" href="https://github.com/Josavil?tab=repositories">Buscar el proyecto en GitHub</a>
+            </article>
+            <article class="project-card">
+              <h3>Este portfolio</h3>
+              <p>Un espacio personal para compartir mi recorrido profesional, proyectos y pequeños experimentos web.</p>
+              <ul class="tag-list" aria-label="Tecnologías">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+              <a class="project-link" href="https://github.com/Josavil/Josavil.github.io">Ver el código en GitHub</a>
+            </article>
+          </div>
         </section>
 
         <section class="section" id="sobre-mi" aria-labelledby="about-title">
           <h2 class="section-heading" id="about-title">Un poco sobre mí</h2>
-          <p class="about-copy">Soy Josavil. Me gusta aprender, experimentar y convertir ideas en cosas que se puedan compartir. Este sitio irá creciendo conmigo; por ahora, es una pequeña puerta a lo que voy creando.</p>
+          <p class="about-copy">Soy Jorge Sánchez Villanueva, desarrollador backend junior. He trabajado con aplicaciones CRM en Java, Spring e Hibernate, informes con Thymeleaf y consultas MySQL. Me interesa entender qué necesita cada proyecto para crear soluciones robustas y útiles. También compagino la programación con mis estudios de Derecho, y participo como coordinador y voluntario en el Grupo Scout Entaban 612.</p>
+        </section>
+
+        <section class="section" aria-labelledby="experience-title">
+          <h2 class="section-heading" id="experience-title">Mi recorrido</h2>
+          <article class="project-card">
+            <h3>Desarrollador Full Stack en prácticas · ISYC</h3>
+            <p><strong>2026</strong> · Mantenimiento y desarrollo de aplicaciones CRM, informes con Thymeleaf, funcionalidades con Spring e Hibernate y gestión de bases de datos MySQL.</p>
+          </article>
+          <article class="project-card experience-entry">
+            <h3>Coordinador de sección y voluntario · Grupo Scout Entaban 612</h3>
+            <p><strong>2018–actualidad</strong> · Coordinación de equipos y actividades educativas, organización y planificación de proyectos.</p>
+          </article>
         </section>
       </main>
 
@@ -296,7 +353,7 @@
         <section class="sidebar-box">
           <h2>Ahora mismo</h2>
           <p><span class="status">En construcción</span></p>
-          <p>Este sitio está empezando. Volveré por aquí para añadir nuevos proyectos y detalles.</p>
+          <p>Desarrollador backend junior con experiencia práctica en Java y bases de datos.</p>
         </section>
 
         <section class="sidebar-box" id="enlaces">
@@ -304,12 +361,14 @@
           <ul class="link-list">
             <li><a href="https://github.com/Josavil">Mi perfil de GitHub</a></li>
             <li><a href="https://github.com/Josavil?tab=repositories">Todos mis repositorios</a></li>
+            <li><a href="sudoku.html">Jugar al Sudoku</a></li>
           </ul>
         </section>
 
         <section class="sidebar-box">
-          <h2>Un detalle</h2>
-          <p>Hecho con HTML y CSS, con cariño por la web de antes.</p>
+          <h2>Lo que uso</h2>
+          <p>Java · Spring · Hibernate · MySQL · SQL · Python · HTML · CSS · JavaScript · Git</p>
+          <p>Formación en Desarrollo de Aplicaciones Multiplataforma · Inglés C1 (Cambridge)</p>
         </section>
       </aside>
     </div>
