@@ -1,0 +1,74 @@
+.photo-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px;
+  background: var(--soft-surface);
+  border: 1px solid var(--soft-border);
+}
+
+.photo-preview p { margin: 0; }
+.photo-preview .project-link { flex: 0 0 auto; }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 16px;
+}
+
+.photo-card {
+  margin: 0;
+  padding: 8px;
+  background: var(--card-white);
+  border: 1px solid var(--line);
+  box-shadow: 3px 3px 0 var(--card-shadow);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--soft-surface);
+}
+
+.photo-card figcaption {
+  padding: 8px 3px 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.gallery-empty {
+  padding: 42px 22px;
+  text-align: center;
+  background: var(--soft-surface);
+  border: 1px dashed var(--soft-border);
+}
+
+.gallery-mark {
+  display: inline-grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  color: var(--blue-dark);
+  font-size: 25px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+.gallery-empty h2 {
+  margin: 15px 0 6px;
+  color: var(--blue-dark);
+  font: bold 22px Georgia, "Times New Roman", serif;
+}
+
+.gallery-empty p { margin: 0 0 12px; color: var(--muted); }
+.gallery-empty a { font-weight: bold; }
+
+@media (max-width: 500px) {
+  .photo-preview { align-items: flex-start; flex-direction: column; }
+  .gallery-empty { padding: 32px 16px; }
+}
