@@ -208,13 +208,19 @@ main { min-width: 0; }
   border-radius: 2px;
 }
 
-.home-footer { padding: 13px 20px; }
-.home-footer { background: var(--footer-surface); color: var(--footer-text); }
+.home-footer {
+  padding: 13px 20px;
+  color: var(--footer-text);
+  background: var(--footer-surface);
+}
+
 .home-footer p { margin: 0; }
 
 @media (max-width: 700px) {
-  .home-shell { width: min(100% - 18px, 560px); }
-  .home-shell { margin: 9px auto; }
+  .home-shell {
+    width: min(100% - 18px, 560px);
+    margin: 9px auto;
+  }
   .masthead { padding: 27px 22px; }
   .masthead::after { right: -65px; }
   .main-nav { padding-inline: 12px; }
